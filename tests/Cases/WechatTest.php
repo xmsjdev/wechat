@@ -27,8 +27,9 @@ class WechatTest extends AbstractTestCase
         $container = ApplicationContext::getContainer();
         $config = make(ConfigFactory::class);
         /** @var Wechat $wechat */
-        $wechat = make(Wechat::class, [$container, $config]);
-        $response = $wechat->payment->transfer->toBalance([]);
+        $wechat = make(Wechat::class);
+        $code = 'wetwetwetwetwe';
+        $response = $wechat::officialAccount()->getOAuth()->userFromCode($code)->getRaw();
         $this->assertIsArray($response);
     }
 }
